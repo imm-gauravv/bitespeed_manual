@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WhatsApp CRM Master Training</title>
+    <title>Bitespeed Training Manual</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -40,7 +40,8 @@
       body {
         background-color: var(--bg-dark);
         /* Subtle mesh gradient background */
-        background-image: radial-gradient(
+        background-image:
+          radial-gradient(
             at 0% 0%,
             rgba(59, 130, 246, 0.15) 0px,
             transparent 50%
@@ -62,20 +63,23 @@
         flex-direction: column;
         align-items: center;
         gap: 80px;
-        padding: 80px 0;
+        padding: 80px 20px; /* Added side padding for mobile */
       }
 
       /* 2. SLIDE CONTAINER */
       .slide-container {
-        width: 1280px;
-        height: 720px;
-        background: rgba(17, 24, 39, 0.6); /* Semi-transparent */
-        backdrop-filter: blur(20px); /* Blur effect */
+        width: 100%;
+        max-width: 1280px;
+        min-height: 720px; /* Changed from fixed height to min-height */
+        height: auto; /* Allow expansion */
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-radius: 32px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 0 0 1px var(--border-glass),
+        box-shadow:
+          0 0 0 1px var(--border-glass),
           0 25px 50px -12px rgba(0, 0, 0, 0.7);
         display: flex;
         flex-direction: column;
@@ -153,6 +157,7 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s;
+        white-space: nowrap; /* Prevent label break on mobile */
       }
       .label-badge:hover {
         transform: translateY(-1px);
@@ -249,10 +254,15 @@
       }
 
       /* 7. CUSTOM TABLES */
+      .table-wrapper {
+        overflow-x: auto; /* Enable horizontal scroll on mobile */
+        border-radius: 12px;
+      }
       .data-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0 12px;
+        min-width: 600px; /* Min width to force scroll */
       }
       .data-table th {
         text-align: left;
@@ -341,7 +351,9 @@
         font-weight: 700;
         cursor: pointer;
         font-size: 16px;
-        transition: transform 0.1s, opacity 0.2s;
+        transition:
+          transform 0.1s,
+          opacity 0.2s;
         display: inline-flex;
         align-items: center;
         gap: 10px;
@@ -349,10 +361,6 @@
       .ai-btn:hover {
         opacity: 0.9;
         transform: translateY(-1px);
-      }
-      .ai-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
       }
       .ai-scenario-box {
         background: rgba(255, 255, 255, 0.05);
@@ -363,14 +371,6 @@
         min-height: 80px;
         display: flex;
         align-items: center;
-      }
-      .ai-feedback-box {
-        margin-top: 20px;
-        padding: 20px;
-        border-radius: 12px;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: none; /* Hidden by default */
       }
       .loader {
         width: 20px;
@@ -390,6 +390,109 @@
           transform: rotate(360deg);
         }
       }
+
+      /* 10. RESPONSIVE MEDIA QUERIES */
+
+      /* Laptop / Tablet (max-width: 1024px) */
+      @media (max-width: 1024px) {
+        .slide-container {
+          padding: 40px;
+          min-height: auto;
+        }
+        h1 {
+          font-size: 56px;
+        }
+        h2 {
+          font-size: 36px;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* Mobile (max-width: 768px) */
+      @media (max-width: 768px) {
+        body {
+          padding: 20px 10px;
+          gap: 40px;
+        }
+
+        .slide-container {
+          width: 100%;
+          border-radius: 20px;
+          padding: 24px;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+        h2 {
+          font-size: 28px;
+        }
+        h3 {
+          font-size: 20px;
+        }
+        p,
+        li {
+          font-size: 16px;
+        }
+
+        /* Stack Grids */
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        /* Adjust Header */
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .slide-number {
+          align-self: flex-start;
+          font-size: 12px;
+        }
+
+        /* Title Stats Stack */
+        .title-stats {
+          flex-direction: column;
+          gap: 24px !important;
+        }
+
+        /* Cards */
+        .card {
+          padding: 20px;
+        }
+
+        /* AI Simulator Buttons Stack */
+        .ai-btn-group {
+          flex-direction: column;
+        }
+        .ai-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        /* Label List Spacing */
+        .label-list li {
+          flex-direction: column;
+          align-items: flex-start !important;
+        }
+
+        /* 24h Circle Scale */
+        .circle-container {
+          width: 250px !important;
+          height: 250px !important;
+        }
+        .circle-container i {
+          font-size: 60px !important;
+        }
+        .circle-container span {
+          font-size: 60px !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -398,7 +501,6 @@
       class="slide-container"
       style="justify-content: center; align-items: center; text-align: center"
     >
-      <!-- Large Glowing Icon -->
       <div style="margin-bottom: 40px; position: relative">
         <div
           style="
@@ -415,7 +517,7 @@
         ></div>
         <i
           class="fa-brands fa-whatsapp"
-          style="font-size: 90px; color: #fff; position: relative; z-index: 2"
+          style="font-size: 80px; color: #fff; position: relative; z-index: 2"
         ></i>
       </div>
 
@@ -431,11 +533,11 @@
         >
       </div>
 
-      <h1>CRM Masterclass</h1>
+      <h1>Bitespeed Manual</h1>
 
       <p
         style="
-          font-size: 22px;
+          font-size: 20px;
           max-width: 700px;
           margin-top: 24px;
           color: #94a3b8;
@@ -445,7 +547,10 @@
         our data pristine.
       </p>
 
-      <div style="margin-top: 60px; display: flex; gap: 60px">
+      <div
+        class="title-stats"
+        style="margin-top: 60px; display: flex; gap: 60px"
+      >
         <div style="text-align: center">
           <div
             style="
@@ -560,12 +665,11 @@
                 1
               </div>
               <div>
-                <strong style="color: #fff; font-size: 20px"
+                <strong style="color: #fff; font-size: 18px"
                   >One Status Only</strong
                 >
                 <p style="margin-top: 6px; font-size: 16px">
                   A person cannot be a 'Lead' and a 'Member' simultaneously.
-                  Pick the most advanced stage.
                 </p>
               </div>
             </li>
@@ -587,12 +691,11 @@
                 2
               </div>
               <div>
-                <strong style="color: #fff; font-size: 20px"
+                <strong style="color: #fff; font-size: 18px"
                   >Label Integrity</strong
                 >
                 <p style="margin-top: 6px; font-size: 16px">
-                  Use existing labels only. Never create duplicates (e.g., don't
-                  create "Hot Lead" if <code>hot-lead</code> exists).
+                  Use existing labels only. Never create duplicates.
                 </p>
               </div>
             </li>
@@ -614,12 +717,12 @@
                 3
               </div>
               <div>
-                <strong style="color: #fff; font-size: 20px"
+                <strong style="color: #fff; font-size: 18px"
                   >Action vs. Status</strong
                 >
                 <p style="margin-top: 6px; font-size: 16px">
                   Status defines <em>who</em> they are. Action defines
-                  <em>what</em> to do next.
+                  <em>what</em> to do.
                 </p>
               </div>
             </li>
@@ -640,7 +743,7 @@
           >
             <span
               class="label-badge lbl-green"
-              style="font-size: 20px; padding: 12px 24px; margin-bottom: 16px"
+              style="font-size: 18px; padding: 12px 24px; margin-bottom: 16px"
               >active-member</span
             >
             <p><strong>Identity</strong><br />(Permanent until changed)</p>
@@ -666,7 +769,7 @@
           >
             <span
               class="label-badge lbl-orange"
-              style="font-size: 20px; padding: 12px 24px; margin-bottom: 16px"
+              style="font-size: 18px; padding: 12px 24px; margin-bottom: 16px"
               >follow-up</span
             >
             <p><strong>Task</strong><br />(Temporary until done)</p>
@@ -810,64 +913,65 @@
         <span class="slide-number">03 / 16</span>
       </div>
 
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th width="20%">Label</th>
-            <th width="35%">When to use (Trigger)</th>
-            <th width="45%">Required Protocol</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="vertical-align: top">
-              <span class="label-badge lbl-blue">cold-lead</span>
-            </td>
-            <td style="vertical-align: top">
-              <ul style="list-style: disc; padding-left: 20px; font-size: 16px">
-                <li>Vague first message ("Hi").</li>
-                <li>Stopped replying > 48h.</li>
-                <li>"Just looking."</li>
-              </ul>
-            </td>
-            <td style="vertical-align: top">
-              <div style="font-size: 16px">
-                <strong style="color: var(--neon-blue)">The Nurture Path</strong
-                ><br />
-                1. Reply with Greeting Template.<br />
-                2. Wait 24h. Do not spam call.<br />
-                3. If no reply, leave as cold-lead.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="vertical-align: top">
-              <span class="label-badge lbl-red">hot-lead</span>
-            </td>
-            <td style="vertical-align: top">
-              <ul style="list-style: disc; padding-left: 20px; font-size: 16px">
-                <li>"What is the price?"</li>
-                <li>"Where are you located?"</li>
-                <li>Active conversation.</li>
-              </ul>
-            </td>
-            <td style="vertical-align: top">
-              <div style="font-size: 16px">
-                <strong style="color: var(--neon-red)">The Urgent Path</strong
-                ><br />
-                1. <strong>CALL IMMEDIATELY.</strong><br />
-                2. If missed, tag
-                <span
-                  class="label-badge lbl-orange"
-                  style="font-size: 12px; padding: 2px"
-                  >follow-up</span
-                >.<br />
-                3. Send: "Hi, tried calling to answer your Qs..."
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th width="20%">Label</th>
+              <th width="35%">When to use (Trigger)</th>
+              <th width="45%">Required Protocol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="vertical-align: top">
+                <span class="label-badge lbl-blue">cold-lead</span>
+              </td>
+              <td style="vertical-align: top">
+                <ul
+                  style="list-style: disc; padding-left: 20px; font-size: 16px"
+                >
+                  <li>Vague first message.</li>
+                  <li>Stopped replying.</li>
+                  <li>"Just looking."</li>
+                </ul>
+              </td>
+              <td style="vertical-align: top">
+                <div style="font-size: 16px">
+                  <strong style="color: var(--neon-blue)"
+                    >The Nurture Path</strong
+                  ><br />
+                  1. Reply with Greeting.<br />
+                  2. Wait 24h. Do not spam.<br />
+                  3. Leave as cold-lead if no reply.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">
+                <span class="label-badge lbl-red">hot-lead</span>
+              </td>
+              <td style="vertical-align: top">
+                <ul
+                  style="list-style: disc; padding-left: 20px; font-size: 16px"
+                >
+                  <li>Asks Price/Location.</li>
+                  <li>Active conversation.</li>
+                </ul>
+              </td>
+              <td style="vertical-align: top">
+                <div style="font-size: 16px">
+                  <strong style="color: var(--neon-red)">The Urgent Path</strong
+                  ><br />
+                  1. <strong>CALL IMMEDIATELY.</strong><br />
+                  2. If missed, add
+                  <span class="label-badge lbl-orange">follow-up</span>.
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- SLIDE 5: DEEP DIVE TRIALS -->
@@ -901,8 +1005,8 @@
             >intro-bought</span
           >
           <p style="margin-bottom: 24px; color: #fff">
-            <strong>The "Trial Pack" Customer.</strong><br />They bought the
-            specific starter deal.
+            <strong>The "Trial Pack" Customer.</strong><br />Bought specific
+            starter deal.
           </p>
           <div
             style="
@@ -924,8 +1028,7 @@
             >drop-in-1-2</span
           >
           <p style="margin-bottom: 24px; color: #fff">
-            <strong>The Casual Visitor.</strong><br />Paid for 1 or 2 classes
-            only.
+            <strong>The Casual Visitor.</strong><br />Paid for 1 or 2 classes.
           </p>
           <div
             style="
@@ -935,8 +1038,7 @@
             "
           >
             <p style="font-size: 14px; color: var(--neon-orange)">
-              <strong>Action:</strong> Confirm attendance. Upsell
-              <em>after</em> class.
+              <strong>Action:</strong> Confirm attendance. Upsell after.
             </p>
           </div>
         </div>
@@ -948,7 +1050,7 @@
             >2week-12class</span
           >
           <p style="margin-bottom: 24px; color: #fff">
-            <strong>The Short-Termer.</strong><br />Non-recurring short pack.
+            <strong>The Short-Termer.</strong><br />Non-recurring pack.
           </p>
           <div
             style="
@@ -958,8 +1060,7 @@
             "
           >
             <p style="font-size: 14px; color: var(--neon-orange)">
-              <strong>Action:</strong> High-touch. Convert to membership before
-              end.
+              <strong>Action:</strong> High-touch. Convert before end.
             </p>
           </div>
         </div>
@@ -1005,15 +1106,14 @@
             The "New Sale"
           </h3>
           <p>
-            They just paid via the payment link. They are officially part of the
-            family but haven't started yet.
+            Just paid via payment link. Officially a member but hasn't started.
           </p>
 
           <div class="callout callout-success">
             <i class="fa-solid fa-check-circle"></i>
             <div>
               <strong>Protocol:</strong><br />
-              Start Onboarding. Send Welcome Packet. Add to Community Group.
+              Start Onboarding. Welcome Packet.
             </div>
           </div>
         </div>
@@ -1034,16 +1134,15 @@
             The "Legacy" & Regular
           </h3>
           <p>
-            1. Members who finished onboarding.<br />2.
-            <strong>LEGACY MEMBERS</strong> (Pre-CRM).
+            1. Finished onboarding.<br />2. <strong>LEGACY MEMBERS</strong>.
           </p>
 
           <div class="callout callout-warning">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <div>
               <strong>Legacy Rule:</strong><br />
-              If they joined before we used this software, tag them
-              <code>active-member</code> immediately. Do not treat as a lead.
+              Pre-CRM members are <code>active-member</code>. Do not treat as
+              leads.
             </div>
           </div>
         </div>
@@ -1084,15 +1183,15 @@
           <span
             class="label-badge lbl-orange"
             style="
-              font-size: 48px;
-              padding: 24px 48px;
+              font-size: 40px;
+              padding: 20px 40px;
               margin-bottom: 40px;
               box-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
             "
             >follow-up</span
           >
           <p style="text-align: center; font-size: 24px; color: #fff">
-            This is your digital "Sticky Note".
+            Your digital "Sticky Note".
           </p>
           <p style="text-align: center; opacity: 0.7; margin-top: 10px">
             "I owe this person an action."
@@ -1131,8 +1230,7 @@
             <div>
               <strong style="color: #fff; font-size: 18px">ADD When...</strong>
               <p style="font-size: 16px">
-                You call & no answer. They promise to pay later. You need to ask
-                a manager.
+                Call no answer. Promise to pay later.
               </p>
             </div>
           </div>
@@ -1157,7 +1255,7 @@
             <div>
               <strong style="color: #fff; font-size: 18px">ACT</strong>
               <p style="font-size: 16px">
-                Perform the task (Call back, Reply, Check).
+                Perform the task (Call back, Reply).
               </p>
             </div>
           </div>
@@ -1183,10 +1281,7 @@
               <strong style="color: #fff; font-size: 18px"
                 >REMOVE When...</strong
               >
-              <p style="font-size: 16px">
-                Immediately after the task is done.
-                <strong>Clean CRM = Peace of Mind.</strong>
-              </p>
+              <p style="font-size: 16px">IMMEDIATELY after task is done.</p>
             </div>
           </div>
         </div>
@@ -1247,9 +1342,6 @@
             <li style="color: #cbd5e1">
               Remove <code>follow-up</code> once resolved.
             </li>
-            <li style="color: #cbd5e1">
-              Update label immediately after a sale.
-            </li>
           </ul>
         </div>
         <!-- DON'T -->
@@ -1295,9 +1387,8 @@
               <span class="label-badge lbl-green">member</span>
             </li>
             <li style="color: #cbd5e1">
-              Leave <code>follow-up</code> on a finished task.
+              Leave <code>follow-up</code> on finished task.
             </li>
-            <li style="color: #cbd5e1">Invent new labels.</li>
           </ul>
         </div>
       </div>
@@ -1362,17 +1453,6 @@
                 ><strong>Handovers:</strong> "Morning shift, please
                 reply."</span
               >
-            </li>
-            <li style="display: flex; align-items: center; gap: 16px">
-              <div
-                style="
-                  width: 8px;
-                  height: 8px;
-                  background: var(--neon-blue);
-                  border-radius: 50%;
-                "
-              ></div>
-              <span><strong>Warnings:</strong> "Customer is angry."</span>
             </li>
           </ul>
         </div>
@@ -1460,8 +1540,7 @@
             The "Source of Truth"
           </h3>
           <p style="margin-bottom: 24px">
-            The permanent record of the member's journey. If it's not written
-            here, it didn't happen.
+            The permanent record of the member's journey.
           </p>
           <div style="display: flex; flex-direction: column; gap: 16px">
             <div
@@ -1478,7 +1557,7 @@
                 class="fa-solid fa-phone"
                 style="color: var(--neon-purple)"
               ></i>
-              <span>Log every call (Answered OR Missed)</span>
+              <span>Log every call</span>
             </div>
             <div
               style="
@@ -1532,11 +1611,11 @@
             "
           >
             <strong style="color: #fca5a5; display: block; margin-bottom: 8px"
-              >The Consequence:</strong
+              >Result:</strong
             >
             <p style="font-size: 16px; color: #fff">
-              Next agent sees no history. Calls user again. User gets annoyed
-              ("I just told you guys!"). Sale lost.
+              Next agent sees no history. Calls user again. User gets annoyed.
+              Sale lost.
             </p>
           </div>
         </div>
@@ -1615,11 +1694,11 @@
             S
           </div>
           <h3 style="margin-bottom: 8px">Status</h3>
-          <p style="font-size: 15px">What is their situation?</p>
+          <p style="font-size: 15px">Situation?</p>
           <div
             style="margin-top: 16px; font-size: 14px; color: var(--neon-blue)"
           >
-            "Price sensitive. On holiday."
+            "Price sensitive."
           </div>
         </div>
         <div class="card" style="align-items: center; text-align: center">
@@ -1641,7 +1720,7 @@
             N
           </div>
           <h3 style="margin-bottom: 8px">Next Step</h3>
-          <p style="font-size: 15px">What do we do?</p>
+          <p style="font-size: 15px">What to do?</p>
           <div
             style="margin-top: 16px; font-size: 14px; color: var(--neon-blue)"
           >
@@ -1679,7 +1758,11 @@
             Perfect Example
           </div>
           <p
-            style="color: #fff; font-family: 'JetBrains Mono'; font-size: 16px"
+            style="
+              color: #fff;
+              font-family: &quot;JetBrains Mono&quot;;
+              font-size: 16px;
+            "
           >
             "Spoke today. Wants morning batch. On holiday till Monday. Call
             Tuesday 10am to book."
@@ -1715,9 +1798,10 @@
           style="display: flex; justify-content: center; align-items: center"
         >
           <div
+            class="circle-container"
             style="
-              width: 350px;
-              height: 350px;
+              width: 300px;
+              height: 300px;
               border-radius: 50%;
               border: 4px dashed var(--neon-blue);
               display: flex;
@@ -1774,11 +1858,10 @@
                 margin-bottom: 8px;
                 font-size: 20px;
               "
-              >When the window closes:</strong
+              >When window closes:</strong
             >
             <p style="color: #fca5a5; font-size: 18px">
-              You CANNOT message them manually. <br />You
-              <strong>MUST CALL</strong> them.
+              You CANNOT message them. <br />You <strong>MUST CALL</strong>.
             </p>
           </div>
         </div>
@@ -1834,6 +1917,7 @@
               color: #fff;
               font-weight: 700;
               font-size: 20px;
+              flex-shrink: 0;
             "
           >
             1
@@ -1867,6 +1951,7 @@
               color: #fff;
               font-weight: 700;
               font-size: 20px;
+              flex-shrink: 0;
             "
           >
             2
@@ -1875,10 +1960,7 @@
             <strong style="color: #fff; font-size: 20px"
               >No Answer? Wait 1 Hour. Call Again.</strong
             >
-            <p>
-              The "Double Tap". People often ignore the first call from unknown
-              numbers but pick up the second.
-            </p>
+            <p>The "Double Tap". People often ignore the first call.</p>
           </div>
         </div>
         <!-- Step 3 -->
@@ -1905,6 +1987,7 @@
               color: #fff;
               font-weight: 700;
               font-size: 20px;
+              flex-shrink: 0;
             "
           >
             3
@@ -1916,8 +1999,7 @@
             <p>
               1. Add
               <span class="label-badge lbl-orange">follow-up</span>
-              label.<br />2. Send WhatsApp (if in 24h window):
-              <em>"Hi, tried calling..."</em>
+              label.<br />2. Send WhatsApp (if in 24h window).
             </p>
           </div>
         </div>
@@ -1990,13 +2072,6 @@
                 style="color: var(--neon-blue)"
               ></i>
               <span><strong>CALL IMMEDIATELY.</strong></span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 16px">
-              <i
-                class="fa-solid fa-arrow-right"
-                style="color: var(--neon-blue)"
-              ></i>
-              <span><em>Scenario: They answer but can't talk.</em></span>
             </div>
             <div style="display: flex; align-items: center; gap: 16px">
               <i
@@ -2210,7 +2285,10 @@
             ></textarea>
           </div>
 
-          <div style="display: flex; gap: 16px; margin-top: auto">
+          <div
+            class="ai-btn-group"
+            style="display: flex; gap: 16px; margin-top: auto"
+          >
             <button
               onclick="generateScenario()"
               class="ai-btn"
@@ -2354,7 +2432,7 @@
 
     <!-- SCRIPTS FOR AI -->
     <script>
-      const apiKey = ""; // System will inject key at runtime
+      let apiKey = ""; // Will be populated by prompt if missing
       let currentScenario = null;
 
       const scenarios = [
@@ -2378,8 +2456,8 @@
         },
         {
           text: "A user messages: 'Stop messaging me'.",
-          idealLabel: "cold-lead", // or spam/opt-out if available, but for this training likely cold-lead or spam
-          idealAction: "Message", // A simple 'Noted' is fine if window open, but action is mostly 'Do nothing'
+          idealLabel: "cold-lead",
+          idealAction: "Message",
           context: "Respect opt-out.",
         },
       ];
@@ -2418,7 +2496,7 @@
 
         const userLabel = document.getElementById("userLabel").value;
         const userAction = document.querySelector(
-          'input[name="userAction"]:checked'
+          'input[name="userAction"]:checked',
         )?.value;
         const userNote = document.getElementById("userNote").value;
 
@@ -2427,11 +2505,24 @@
           return;
         }
 
+        // LIVE MODE CHECK: Ensure API Key
+        if (!apiKey) {
+          const inputKey = prompt(
+            "To activate the AI Coach, please enter your Google Gemini API Key:",
+          );
+          if (inputKey && inputKey.trim() !== "") {
+            apiKey = inputKey.trim();
+          } else {
+            alert("An API Key is required to use the AI Coach feature.");
+            return;
+          }
+        }
+
         // Show Loader
         document.getElementById("loadingSpinner").style.display = "block";
         document.getElementById("feedbackArea").style.opacity = "0.3";
 
-        const prompt = `
+        const promptText = `
             You are a strict CRM Training Coach. Evaluate the student's response to this scenario based on these rules:
             1. ONE status label only.
             2. "hot-lead" = Call immediately.
@@ -2462,13 +2553,18 @@
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }],
+                contents: [{ parts: [{ text: promptText }] }],
                 generationConfig: { responseMimeType: "application/json" },
               }),
-            }
+            },
           );
 
           const data = await response.json();
+
+          if (data.error) {
+            throw new Error(data.error.message);
+          }
+
           const result = JSON.parse(data.candidates[0].content.parts[0].text);
 
           // Hide Loader
@@ -2480,44 +2576,26 @@
             result.score > 80
               ? "var(--neon-green)"
               : result.score > 50
-              ? "var(--neon-orange)"
-              : "var(--neon-red)";
+                ? "var(--neon-orange)"
+                : "var(--neon-red)";
 
           document.getElementById("feedbackArea").innerHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 48px; font-weight: 800; color: ${colorClass};">${
-            result.score
-          }/100</div>
+                    <div style="font-size: 48px; font-weight: 800; color: ${colorClass};">${result.score}/100</div>
                     <div style="font-size: 14px; color: #94a3b8; text-transform: uppercase;">Score</div>
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; display: flex; justify-content: space-between;">
                         <span>Label Choice</span>
-                        <span style="color: ${
-                          result.labelCorrect
-                            ? "var(--neon-green)"
-                            : "var(--neon-red)"
-                        }">
-                            ${
-                              result.labelCorrect
-                                ? '<i class="fa-solid fa-check"></i> Correct'
-                                : '<i class="fa-solid fa-xmark"></i> Incorrect'
-                            }
+                        <span style="color: ${result.labelCorrect ? "var(--neon-green)" : "var(--neon-red)"}">
+                            ${result.labelCorrect ? '<i class="fa-solid fa-check"></i> Correct' : '<i class="fa-solid fa-xmark"></i> Incorrect'}
                         </span>
                     </div>
                     <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; display: flex; justify-content: space-between;">
                         <span>Action Choice</span>
-                        <span style="color: ${
-                          result.actionCorrect
-                            ? "var(--neon-green)"
-                            : "var(--neon-red)"
-                        }">
-                            ${
-                              result.actionCorrect
-                                ? '<i class="fa-solid fa-check"></i> Correct'
-                                : '<i class="fa-solid fa-xmark"></i> Incorrect'
-                            }
+                        <span style="color: ${result.actionCorrect ? "var(--neon-green)" : "var(--neon-red)"}">
+                            ${result.actionCorrect ? '<i class="fa-solid fa-check"></i> Correct' : '<i class="fa-solid fa-xmark"></i> Incorrect'}
                         </span>
                     </div>
                      <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; display: flex; justify-content: space-between;">
@@ -2528,15 +2606,16 @@
 
                 <div style="margin-top: 20px; padding: 16px; background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--neon-blue); border-radius: 8px;">
                     <strong style="color: var(--neon-blue); display: block; margin-bottom: 4px;">Coach's Tip:</strong>
-                    <p style="font-size: 15px; color: #dbeafe;">${
-                      result.improvementTip
-                    }</p>
+                    <p style="font-size: 15px; color: #dbeafe;">${result.improvementTip}</p>
                 </div>
             `;
         } catch (error) {
           console.error(error);
           document.getElementById("loadingSpinner").style.display = "none";
-          alert("AI Coach is currently offline. Please try again.");
+          alert(
+            "Error connecting to AI Coach. Check your API Key and try again.",
+          );
+          apiKey = ""; // Reset key so they can try entering it again
         }
       }
 
